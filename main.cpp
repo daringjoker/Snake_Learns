@@ -27,17 +27,28 @@ int main()
         SDL_Init(SDL_INIT_EVERYTHING);//initialize everything from sdl
         SDL_Window   *window   = SDL_CreateWindow("Snake:machine learns it", SDL_WINDOWPOS_CENTERED,
                                                   SDL_WINDOWPOS_CENTERED, WINW, WINH,
-                                                  /*SDL_WINDOW_MAXIMIZED |*/ SDL_WINDOW_SHOWN);
+                                                  SDL_WINDOW_SHOWN);
         SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+        SDL_Surface *surface=SDL_LoadBMP("../grass.bmp");
+        SDL_Texture *grass=SDL_CreateTextureFromSurface(renderer,surface);
+        SDL_FreeSurface(surface);
         snake snake1(renderer);
         food food1(renderer,snake1);
         snakeai snakedriver(snake1,food1);
         int gencount=0;
+        SDL_Rect srect={0,0,512,512};
+
         while (running)
         {
             handle_events(window,snake1);
-            SDL_SetRenderDrawColor(renderer, 0, 150, 0, 50);
-            SDL_RenderClear(renderer);
+            for (int row=0;row*80<=WINW;row++)
+            {
+                for (int col=0;col*80<=WINH;col++)
+                {
+                    SDL_Rect drect={row*80,col*80,80,80};
+                    SDL_RenderCopy(renderer, grass, &srect,&drect);
+                }
+            }
             snakedriver.drivesnake();
 //            if (gencount%4==0)
 //            {

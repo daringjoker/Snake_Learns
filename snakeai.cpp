@@ -222,14 +222,14 @@ action snakeai::chooseaction(state state1)
         action_value *x, *y;
         std::sort(qvals.begin(), qvals.end(), comp_action_value);
         std::vector<action_value> maxqs;
-        if (gencount % 1010 == 0)
-        {
-            for (auto item :qvals)
-            {
-                printf("%f\t", item.value);
-            }
-            printf("\n");
-        }
+//        if (gencount % 1010 == 0)
+//        {
+//            for (auto item :qvals)
+//            {
+//                printf("%f\t", item.value);
+//            }
+//            printf("\n");
+//        }
         for (auto                 qs :qvals)
         {
             if (qs.value == qvals[0].value)
@@ -238,10 +238,10 @@ action snakeai::chooseaction(state state1)
             }
         }
         unsigned long             index = random() % maxqs.size();
-        if (gencount % 1000 == 0)
-        {
-            printf("max q value: %f\nmin q value : %f \n", maxqs[index].value, qvals[qvals.size() - 1].value);
-        }
+//        if (gencount % 1000 == 0)
+//        {
+//            printf("max q value: %f\nmin q value : %f \n", maxqs[index].value, qvals[qvals.size() - 1].value);
+//        }
         return maxqs[index].action1;
     }
 
@@ -373,7 +373,7 @@ void snakeai::drivesnake()
 //                    snake1.initlength=5;
 //                    this->epsilion=5;
 //                }
-        if (gencount % 1000 == 0)
+        if (gencount %10 == 0)
         {
             system("clear");
             printf("turncount:- %lld \nstate:- {%d,%d,%d,%d,%d,%d,%d,%d,%d,%d}\n", this->gencount, newstate.c1,
@@ -387,7 +387,7 @@ void snakeai::drivesnake()
             printf("left count         : %lld\n", no_of_left_choosen);
             printf("right count        : %lld\n", no_of_right_choosen);
             printf("none choosen count : %lld\n", no_of_none_choosen);
-            printf("q length : %d s \n", q.size());
+            printf("q length : %ld s \n", q.size());
             printf("q size : %ld Bytes \n", q.size() * sizeof(key_value));
             printf("q size : %f KB \n", q.size() * sizeof(key_value) / 1024.0);
             printf("=======================================================\n\n");

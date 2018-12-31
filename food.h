@@ -18,6 +18,8 @@ class food
     private:
         snake &snake1;
         void eaten();
+        SDL_Rect food_rect={0,192,64,64};
+        SDL_Texture *frog;
         SDL_Renderer *renderer;
     public:
         SDL_Point loc;

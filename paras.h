@@ -9,9 +9,10 @@
 
 #ifndef DLIBPRAC_PARAS_H
 #define DLIBPRAC_PARAS_H
-
-#define WINH 600
-#define WINW 500
-#define BLK_SIZE 10
-#define SPEED 50
+#define ROWS 30
+#define COLS 25
+#define BLK_SIZE 20
+#define WINH ROWS*BLK_SIZE
+#define WINW COLS*BLK_SIZE
+#define SPEED 30
 #endif //DLIBPRAC_PARAS_H
